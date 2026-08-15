@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tính tiền tiến tình</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="blob pink"></div><div class="blob blue"></div>
+
+<header>
+  <div class="brand">
+    <span class="heart">♡</span>
+    <div><b>Tính tiền tiến tình</b><small>nhanh • nhẹ nhàng • chính xác</small></div>
+  </div>
+  <button id="refresh" class="refresh">↻ Làm mới</button>
+</header>
+
+<main>
+  <div class="title-row">
+    <span>♡</span><h1>Tính tiền <em>tiến tình</em></h1><span>♡</span>
+  </div>
+  <p class="intro">Chọn sản phẩm và số lượng, hệ thống sẽ tự tính tổng tiền và quà tặng cho bạn 💕</p>
+
+  <div class="layout">
+    <section class="card">
+      <div class="section-title pink-title">
+        <span class="icon pink-icon">＋</span>
+        <div><h2>Thêm sản phẩm</h2><small>Chọn sản phẩm và số lượng</small></div>
+      </div>
+
+      <div class="form-grid">
+        <label>Sản phẩm
+          <select id="product"></select>
+        </label>
+        <label>Số lượng (chai)
+          <div class="stepper">
+            <button id="minus">−</button>
+            <input id="qty" type="number" min="1" step="1" value="1">
+            <button id="plus">＋</button>
+          </div>
+        </label>
+      </div>
+
+      <button id="add" class="add-btn">＋ &nbsp;Thêm vào đơn hàng</button>
+
+      <div class="list-title">
+        <b>Danh sách sản phẩm</b>
+        <span id="itemCount">0 sản phẩm</span>
+      </div>
+
+      <div class="table-head"><span>Sản phẩm</span><span>Số lượng</span><span>Đơn giá</span><span>Thành tiền</span><span></span></div>
+      <div id="items"></div>
+      <div id="empty" class="empty">Chưa có sản phẩm nào 🌷</div>
+
+      <div class="qty-summary">
+        <span>🛒 &nbsp;Tổng số lượng mua hàng</span>
+        <strong id="totalQty">0 <small>chai</small></strong>
+      </div>
+    </section>
+
+    <aside class="card result-card">
+      <div class="section-title blue-title">
+        <span class="icon blue-icon">▣</span>
+        <div><h2>Kết quả</h2><small>Tổng tiền và quà tặng</small></div>
+      </div>
+
+      <div class="total-box">
+        <small>TỔNG TIỀN</small>
+        <strong id="total">0 ₫</strong>
+      </div>
+
+      <div class="gift-box">
+        <b>🎁 &nbsp;QUÀ TẶNG</b>
+        <div id="gifts">Chưa có quà tặng</div>
+      </div>
+
+      <button id="copy" class="copy-btn">▣ &nbsp;Sao chép báo giá</button>
+      <button id="clear" class="clear-btn">♲ &nbsp;Xóa đơn hàng</button>
+    </aside>
+  </div>
+</main>
+
+<footer>♡ &nbsp;Cảm ơn bạn! Chúc bạn một ngày thật dễ thương&nbsp; ♡</footer>
+
+<script>
+const DATA = {"Rước đòng":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai RĐ"},{"from":4,"price":380000,"gift":"1 chai RĐ"},{"from":5,"price":370000,"gift":"2 chai RĐ"},{"from":10,"price":350000,"gift":"3 chai RĐ"},{"from":15,"price":340000,"gift":"4 chai RĐ"},{"from":20,"price":330000,"gift":"6 chai RĐ"},{"from":60,"price":320000,"gift":"12 chai RĐ"},{"from":100,"price":310000,"gift":"20 chai RĐ"},{"from":200,"price":300000,"gift":"40 chai RĐ"}],"R95":[{"from":1,"price":525000,"gift":""},{"from":2,"price":487500,"gift":""},{"from":3,"price":465000,"gift":"5 Pow up"},{"from":4,"price":442500,"gift":""},{"from":5,"price":413000,"gift":"1 kg"},{"from":10,"price":382500,"gift":"2 Kg"},{"from":15,"price":382667,"gift":"3 Kg"},{"from":20,"price":382500,"gift":"4 Kg"},{"from":40,"price":382500,"gift":"8 Kg"},{"from":80,"price":382500,"gift":"16 Kg"},{"from":100,"price":382500,"gift":"20 Kg"},{"from":200,"price":350000,"gift":"30 Kg"},{"from":400,"price":320000,"gift":"50 Kg"}],"Sika 39":[{"from":1,"price":520000,"gift":""},{"from":2,"price":483000,"gift":""},{"from":3,"price":460000,"gift":"1 chai"},{"from":4,"price":439000,"gift":""},{"from":5,"price":409000,"gift":"1 chai + 5 pow up"},{"from":10,"price":379000,"gift":"2 chai"},{"from":15,"price":379000,"gift":"3 chai"},{"from":20,"price":379000,"gift":"4 chai"},{"from":40,"price":379000,"gift":"8 chai"},{"from":80,"price":379000,"gift":"16 chai"},{"from":100,"price":379000,"gift":"20 chai"}],"S.1":[{"from":1,"price":520000,"gift":""},{"from":2,"price":495000,"gift":"2 X10"},{"from":3,"price":495000,"gift":"3 X10"},{"from":4,"price":495000,"gift":"4 X10"},{"from":5,"price":495000,"gift":"5 X10"},{"from":6,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":7,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":8,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":9,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":10,"price":470000,"gift":"10 X10 + 5 Powup"},{"from":20,"price":450000,"gift":"20 X10 + 20 Powup"},{"from":30,"price":450000,"gift":"30 X10 + 30 Powup"},{"from":60,"price":450000,"gift":"60 X10 + 40 Powup"},{"from":100,"price":400000,"gift":"100 X10 + 60 Powup"}],"Siêu trổ thoát":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai siêu trổ thoát"},{"from":4,"price":380000,"gift":"1 chai siêu trổ thoát"},{"from":5,"price":370000,"gift":"2 chai siêu trổ thoát"},{"from":10,"price":350000,"gift":"3 chai siêu trổ thoát"},{"from":15,"price":340000,"gift":"4 chai siêu trổ thoát"},{"from":20,"price":330000,"gift":"6 chai siêu trổ thoát"},{"from":60,"price":320000,"gift":"12 chai siêu trổ thoát"},{"from":100,"price":310000,"gift":"20 chai siêu trổ thoát"},{"from":200,"price":300000,"gift":"40 chai siêu trổ thoát"}],"Canxi Bo":[{"from":1,"price":490000,"gift":""},{"from":2,"price":455000,"gift":""},{"from":3,"price":434000,"gift":"1 chai"},{"from":4,"price":413000,"gift":""},{"from":5,"price":385000,"gift":"1 chai + 5 pow up"},{"from":10,"price":357000,"gift":"2 chai"},{"from":15,"price":357000,"gift":"3 chai"},{"from":20,"price":357000,"gift":"4 chai"},{"from":40,"price":357000,"gift":"8 chai"},{"from":80,"price":357000,"gift":"16 chai"},{"from":100,"price":357000,"gift":"20 chai"}],"Pas.2":[{"from":1,"price":490000,"gift":"2 pow up"},{"from":2,"price":455000,"gift":"4 pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":100,"price":357000,"gift":"30 chai"}],"Nấm Azol":[{"from":1,"price":550000,"gift":""},{"from":2,"price":510000,"gift":""},{"from":3,"price":487000,"gift":"1 chai"},{"from":4,"price":463000,"gift":""},{"from":5,"price":432000,"gift":"1 chai + 5 Pow Up"},{"from":10,"price":400000,"gift":"2 chai"},{"from":15,"price":400000,"gift":"3 chai"},{"from":20,"price":400000,"gift":"4 chai"},{"from":40,"price":400000,"gift":"8 chai"},{"from":80,"price":400000,"gift":"16 chai"},{"from":100,"price":400000,"gift":"20 chai"}],"Combi":[{"from":1,"price":35000,"gift":""},{"from":5,"price":28000,"gift":""},{"from":10,"price":25000,"gift":""},{"from":20,"price":23000,"gift":""},{"from":50,"price":20000,"gift":""},{"from":200,"price":18000,"gift":""},{"from":400,"price":16000,"gift":""},{"from":800,"price":15000,"gift":""}],"Pow Up":[{"from":1,"price":20000,"gift":""},{"from":5,"price":18000,"gift":""},{"from":10,"price":17000,"gift":""},{"from":20,"price":16000,"gift":""},{"from":50,"price":15000,"gift":""},{"from":100,"price":14000,"gift":""},{"from":150,"price":13000,"gift":""},{"from":200,"price":12000,"gift":""},{"from":250,"price":11000,"gift":""},{"from":300,"price":10000,"gift":""}]};
+const GROUP = ["Rước đòng","Siêu trổ thoát","Sika 39","Canxi Bo"];
+const productEl = document.getElementById("product");
+const qtyEl = document.getElementById("qty");
+let order = [];
+
+Object.keys(DATA).forEach(name => {
+  const o = document.createElement("option");
+  o.value = name; o.textContent = name; productEl.appendChild(o);
+});
+
+const money = n => new Intl.NumberFormat("vi-VN").format(n) + " ₫";
+
+function tier(name, q) {
+  const a = DATA[name].filter(x => x.from <= q);
+  return a.length ? a.reduce((x,y) => x.from > y.from ? x : y) : null;
+}
+
+function aggregate() {
+  const q = new Map(), names = [];
+  for (const x of order) {
+    if (!q.has(x.name)) { q.set(x.name, 0); names.push(x.name); }
+    q.set(x.name, q.get(x.name) + x.qty);
+  }
+  return {q, names, totalQty: order.reduce((s,x) => s + x.qty, 0)};
+}
+
+function calculate() {
+  const {q, names, totalQty} = aggregate();
+  let total = 0, rows = [], gifts = [];
+
+  for (const name of names) {
+    const n = q.get(name);
+    const priceTier = tier(name, totalQty);
+    const giftTier = tier(name, n);
+    const price = priceTier ? priceTier.price : 0;
+    total += n * price;
+    rows.push({name, qty:n, price});
+    if (giftTier && giftTier.gift) {
+      const m = giftTier.gift.match(/^([^+]*chai)/i);
+      gifts.push("Tặng " + (m ? m[1] : giftTier.gift) + " " + name);
+    }
+  }
+
+  const leftovers = new Map();
+  for (const name of names) {
+    const n = q.get(name), gt = tier(name, n), threshold = gt ? gt.from : 0;
+    leftovers.set(name, n < 3 ? n : n - threshold);
+  }
+
+  const remain = GROUP.reduce((s,n) => s + (leftovers.get(n) || 0), 0);
+  const candidates = names.filter(n => GROUP.includes(n) && (leftovers.get(n) || 0) > 0);
+  const groupGiftCount = Math.floor(remain / 3);
+
+  if (groupGiftCount > 0 && candidates.length) {
+    let recipient = candidates[0], best = DATA[recipient][0].price;
+    for (const n of candidates.slice(1)) {
+      if (DATA[n][0].price < best) { best = DATA[n][0].price; recipient = n; }
+    }
+    gifts.push("Tặng " + groupGiftCount + " chai " + recipient);
+  }
+
+  return {totalQty, rows, total, gifts};
+}
+
+function render() {
+  const r = calculate();
+  document.getElementById("total").textContent = money(r.total);
+  document.getElementById("totalQty").innerHTML = r.totalQty + ' <small>chai</small>';
+  document.getElementById("itemCount").textContent = r.rows.length + " sản phẩm";
+
+  const box = document.getElementById("items");
+  box.innerHTML = "";
+  document.getElementById("empty").style.display = order.length ? "none" : "block";
+
+  r.rows.forEach((x, i) => {
+    const d = document.createElement("div");
+    d.className = "table-row";
+    d.innerHTML = `
+      <div class="prod-name"><b>${x.name}</b><small>${x.qty} chai</small></div>
+      <div class="row-qty">${x.qty}</div>
+      <div class="unit">${money(x.price)}</div>
+      <strong>${money(x.qty * x.price)}</strong>
+      <button class="remove" data-i="${i}">×</button>`;
+    box.appendChild(d);
+  });
+
+  document.getElementById("gifts").innerHTML = r.gifts.length
+    ? r.gifts.map(g => `<div>🎁 ${g.replace(/^Tặng /,"")}</div>`).join("")
+    : "Chưa có quà tặng";
+
+  box.querySelectorAll(".remove").forEach(btn => {
+    btn.onclick = () => {
+      const name = r.rows[Number(btn.dataset.i)].name;
+      const index = order.findIndex(x => x.name === name);
+      if (index >= 0) order.splice(index, 1);
+      render();
+    };
+  });
+}
+
+document.getElementById("minus").onclick = () => qtyEl.value = Math.max(1, (Number(qtyEl.value)||1)-1);
+document.getElementById("plus").onclick = () => qtyEl.value = Math.max(1, (Number(qtyEl.value)||1)+1);
+
+document.getElementById("add").onclick = () => {
+  const name = productEl.value;
+  const qty = Math.max(1, Math.floor(Number(qtyEl.value)||1));
+  order.push({name, qty});
+  qtyEl.value = 1;
+  render();
+};
+
+document.getElementById("clear").onclick = () => { order = []; render(); };
+document.getElementById("refresh").onclick = () => { order = []; qtyEl.value = 1; render(); };
+
+document.getElementById("copy").onclick = async () => {
+  if (!order.length) return alert("Bạn chưa thêm sản phẩm.");
+  const r = calculate();
+  const text =
+    "BÁO GIÁ — TÍNH TIỀN TIẾN TÌNH\n\n" +
+    r.rows.map(x => `- ${x.name}: ${x.qty} chai × ${money(x.price)} = ${money(x.qty*x.price)}`).join("\n") +
+    `\n\nTỔNG SỐ LƯỢNG: ${r.totalQty} chai\nTỔNG TIỀN: ${money(r.total)}\nQUÀ TẶNG: ${r.gifts.join(" + ") || "Không có"}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Đã sao chép báo giá 💕");
+  } catch {
+    window.prompt("Sao chép báo giá:", text);
+  }
+};
+
+render();
+</script>
+</body>
+</html>
