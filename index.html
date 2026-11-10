@@ -8,301 +8,127 @@
 </head>
 <body>
 <div class="blob pink"></div><div class="blob blue"></div>
-
 <header>
-  <div class="brand">
-    <span class="heart">♡</span>
-    <div><b>Tính tiền tiến tình</b><small>nhanh • nhẹ nhàng • chính xác</small></div>
-  </div>
+  <div class="brand"><span class="heart">♡</span><div><b>Tính tiền tiến tình</b><small>nhanh • nhẹ nhàng • chính xác</small></div></div>
   <button id="refresh" class="refresh">↻ Làm mới</button>
 </header>
-
 <main>
-  <div class="title-row">
-    <span>♡</span><h1>Tính tiền <em>tiến tình</em></h1><span>♡</span>
-  </div>
+  <div class="title-row"><span>♡</span><h1>Tính tiền <em>tiến tình</em></h1><span>♡</span></div>
   <p class="intro">Chọn sản phẩm và số lượng, hệ thống sẽ tự tính tổng tiền và quà tặng cho bạn 💕</p>
-
   <div class="layout">
     <section class="card">
-      <div class="section-title pink-title">
-        <span class="icon pink-icon">＋</span>
-        <div><h2>Thêm sản phẩm</h2><small>Chọn sản phẩm và số lượng</small></div>
-      </div>
-
+      <div class="section-title pink-title"><span class="icon pink-icon">＋</span><div><h2>Thêm sản phẩm</h2><small>Chọn sản phẩm và số lượng</small></div></div>
       <div class="form-grid">
-        <label>Sản phẩm
-          <select id="product"></select>
-        </label>
-        <label>Số lượng (chai)
-          <div class="stepper">
-            <button id="minus">−</button>
-            <input id="qty" type="number" min="1" step="1" value="1">
-            <button id="plus">＋</button>
-          </div>
+        <label>Sản phẩm<select id="product"></select></label>
+        <label id="qtyLabel">Số lượng
+          <div class="stepper"><button id="minus" type="button">−</button><input id="qty" type="number" min="1" step="1" value="1"><button id="plus" type="button">＋</button></div>
         </label>
       </div>
-
       <button id="add" class="add-btn">＋ &nbsp;Thêm vào đơn hàng</button>
-
-      <div class="list-title">
-        <b>Danh sách sản phẩm</b>
-        <span id="itemCount">0 sản phẩm</span>
-      </div>
-
+      <div class="list-title"><b>Danh sách sản phẩm</b><span id="itemCount">0 sản phẩm</span></div>
       <div class="table-head"><span>Sản phẩm</span><span>Số lượng</span><span>Đơn giá</span><span>Thành tiền</span><span></span></div>
-      <div id="items"></div>
-      <div id="empty" class="empty">Chưa có sản phẩm nào 🌷</div>
-
-      <div class="qty-summary">
-        <span>🛒 &nbsp;Tổng số lượng mua hàng</span>
-        <strong id="totalQty">0 <small>chai</small></strong>
-      </div>
+      <div id="items"></div><div id="empty" class="empty">Chưa có sản phẩm nào 🌷</div>
+      <div class="qty-summary"><span>🛒 &nbsp;Tổng số lượng mua hàng</span><strong id="totalQty">0</strong></div>
     </section>
-
     <aside class="card result-card">
-      <div class="section-title blue-title">
-        <span class="icon blue-icon">▣</span>
-        <div><h2>Kết quả</h2><small>Tổng tiền và quà tặng</small></div>
-      </div>
-
-      <div class="total-box">
-        <small>TỔNG TIỀN</small>
-        <strong id="total">0 ₫</strong>
-      </div>
-
-      <div class="sub-result">
-        <div><span>Giá gốc</span><strong id="originalTotal">0 ₫</strong></div>
-        <div><span>Tiết kiệm</span><strong id="saving">0 ₫</strong></div>
-      </div>
-
-      <div class="gift-box">
-        <b>🎁 &nbsp;QUÀ TẶNG</b>
-        <div id="gifts">Chưa có quà tặng</div>
-      </div>
-
-      <button id="cskhToggle" class="cskh-toggle" type="button">
-        🎀 &nbsp;Xem quà tặng CSKH <span id="cskhArrow">⌄</span>
-      </button>
-      <div id="cskhPanel" class="cskh-panel" hidden>
-        <div class="cskh-title">QUÀ TẶNG CỦA CSKH</div>
-        <div id="cskhGifts">Chưa có quà tặng CSKH</div>
-      </div>
-
-      <button id="copy" class="copy-btn">▣ &nbsp;Sao chép báo giá</button>
-      <button id="clear" class="clear-btn">♲ &nbsp;Xóa đơn hàng</button>
+      <div class="section-title blue-title"><span class="icon blue-icon">▣</span><div><h2>Kết quả</h2><small>Tổng tiền và quà tặng</small></div></div>
+      <div class="total-box"><small>TỔNG TIỀN</small><strong id="total">0 ₫</strong></div>
+      <div class="sub-result"><div><span>Giá gốc</span><strong id="originalTotal">0 ₫</strong></div><div><span>Tiết kiệm</span><strong id="saving">0 ₫</strong></div></div>
+      <div class="gift-box"><b>🎁 &nbsp;QUÀ TẶNG</b><div id="gifts">Chưa có quà tặng</div></div>
+      <button id="cskhToggle" class="cskh-toggle" type="button">🎀 &nbsp;Xem quà tặng CSKH <span id="cskhArrow">⌄</span></button>
+      <div id="cskhPanel" class="cskh-panel" hidden><div class="cskh-title">QUÀ TẶNG CỦA CSKH</div><div id="cskhGifts">Chưa có quà tặng CSKH</div></div>
+      <button id="copy" class="copy-btn">▣ &nbsp;Sao chép báo giá</button><button id="clear" class="clear-btn">♲ &nbsp;Xóa đơn hàng</button>
     </aside>
   </div>
 </main>
-
 <footer>♡ &nbsp;Cảm ơn bạn! Chúc bạn một ngày thật dễ thương&nbsp; ♡</footer>
-
 <script>
-const DATA = {"Rước đòng":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai RĐ"},{"from":4,"price":380000,"gift":"1 chai RĐ"},{"from":5,"price":370000,"gift":"2 chai RĐ"},{"from":10,"price":350000,"gift":"3 chai RĐ"},{"from":15,"price":340000,"gift":"4 chai RĐ"},{"from":20,"price":330000,"gift":"6 chai RĐ"},{"from":60,"price":320000,"gift":"12 chai RĐ"},{"from":100,"price":310000,"gift":"20 chai RĐ"},{"from":200,"price":300000,"gift":"40 chai RĐ"}],"R95":[{"from":1,"price":525000,"gift":""},{"from":2,"price":487500,"gift":""},{"from":3,"price":465000,"gift":"5 Pow up"},{"from":4,"price":442500,"gift":""},{"from":5,"price":413000,"gift":"1 kg"},{"from":10,"price":382500,"gift":"2 Kg"},{"from":15,"price":382667,"gift":"3 Kg"},{"from":20,"price":382500,"gift":"4 Kg"},{"from":40,"price":382500,"gift":"8 Kg"},{"from":80,"price":382500,"gift":"16 Kg"},{"from":100,"price":382500,"gift":"20 Kg"},{"from":200,"price":350000,"gift":"30 Kg"},{"from":400,"price":320000,"gift":"50 Kg"}],"Sika 39":[{"from":1,"price":520000,"gift":""},{"from":2,"price":483000,"gift":""},{"from":3,"price":460000,"gift":"1 chai"},{"from":4,"price":439000,"gift":""},{"from":5,"price":409000,"gift":"1 chai + 5 pow up"},{"from":10,"price":379000,"gift":"2 chai"},{"from":15,"price":379000,"gift":"3 chai"},{"from":20,"price":379000,"gift":"4 chai"},{"from":40,"price":379000,"gift":"8 chai"},{"from":80,"price":379000,"gift":"16 chai"},{"from":100,"price":379000,"gift":"20 chai"}],"S.1":[{"from":1,"price":520000,"gift":""},{"from":2,"price":495000,"gift":"2 X10"},{"from":3,"price":495000,"gift":"3 X10"},{"from":4,"price":495000,"gift":"4 X10"},{"from":5,"price":495000,"gift":"5 X10"},{"from":6,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":7,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":8,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":9,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":10,"price":470000,"gift":"10 X10 + 5 Powup"},{"from":20,"price":450000,"gift":"20 X10 + 20 Powup"},{"from":30,"price":450000,"gift":"30 X10 + 30 Powup"},{"from":60,"price":450000,"gift":"60 X10 + 40 Powup"},{"from":100,"price":400000,"gift":"100 X10 + 60 Powup"}],"Siêu trổ thoát":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai siêu trổ thoát"},{"from":4,"price":380000,"gift":"1 chai siêu trổ thoát"},{"from":5,"price":370000,"gift":"2 chai siêu trổ thoát"},{"from":10,"price":350000,"gift":"3 chai siêu trổ thoát"},{"from":15,"price":340000,"gift":"4 chai siêu trổ thoát"},{"from":20,"price":330000,"gift":"6 chai siêu trổ thoát"},{"from":60,"price":320000,"gift":"12 chai siêu trổ thoát"},{"from":100,"price":310000,"gift":"20 chai siêu trổ thoát"},{"from":200,"price":300000,"gift":"40 chai siêu trổ thoát"}],"Canxi Bo":[{"from":1,"price":490000,"gift":""},{"from":2,"price":455000,"gift":""},{"from":3,"price":434000,"gift":"1 chai"},{"from":4,"price":413000,"gift":""},{"from":5,"price":385000,"gift":"1 chai + 5 pow up"},{"from":10,"price":357000,"gift":"2 chai"},{"from":15,"price":357000,"gift":"3 chai"},{"from":20,"price":357000,"gift":"4 chai"},{"from":40,"price":357000,"gift":"8 chai"},{"from":80,"price":357000,"gift":"16 chai"},{"from":100,"price":357000,"gift":"20 chai"}],"Pas.2":[{"from":1,"price":490000,"gift":"2 pow up"},{"from":2,"price":455000,"gift":"4 pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":100,"price":357000,"gift":"30 chai"}],"Nấm Azol":[{"from":1,"price":550000,"gift":""},{"from":2,"price":510000,"gift":""},{"from":3,"price":487000,"gift":"1 chai"},{"from":4,"price":463000,"gift":""},{"from":5,"price":432000,"gift":"1 chai + 5 Pow Up"},{"from":10,"price":400000,"gift":"2 chai"},{"from":15,"price":400000,"gift":"3 chai"},{"from":20,"price":400000,"gift":"4 chai"},{"from":40,"price":400000,"gift":"8 chai"},{"from":80,"price":400000,"gift":"16 chai"},{"from":100,"price":400000,"gift":"20 chai"}],"Combi":[{"from":1,"price":35000,"gift":""},{"from":5,"price":28000,"gift":""},{"from":10,"price":25000,"gift":""},{"from":20,"price":23000,"gift":""},{"from":50,"price":20000,"gift":""},{"from":200,"price":18000,"gift":""},{"from":400,"price":16000,"gift":""},{"from":800,"price":15000,"gift":""}],"Pow Up":[{"from":1,"price":20000,"gift":""},{"from":5,"price":18000,"gift":""},{"from":10,"price":17000,"gift":""},{"from":20,"price":16000,"gift":""},{"from":50,"price":15000,"gift":""},{"from":100,"price":14000,"gift":""},{"from":150,"price":13000,"gift":""},{"from":200,"price":12000,"gift":""},{"from":250,"price":11000,"gift":""},{"from":300,"price":10000,"gift":""}],"No.1":[{"from":1,"price":645000,"gift":""},{"from":2,"price":645000,"gift":"1 X10"},{"from":3,"price":635000,"gift":"2 X10"},{"from":4,"price":625000,"gift":"3 X10"},{"from":5,"price":625000,"gift":"1 chai No.1"},{"from":6,"price":620000,"gift":"6 X10"},{"from":7,"price":620000,"gift":"7 X10"},{"from":8,"price":620000,"gift":"8 X10"},{"from":10,"price":610000,"gift":"2 chai No.1"},{"from":15,"price":600000,"gift":"3 chai No.1"},{"from":30,"price":590000,"gift":"6 chai No.1"},{"from":60,"price":580000,"gift":"12 chai No.1"},{"from":120,"price":580000,"gift":"24 chai No.1"}]};
-const CSKH = {"Rice up 98":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":200,"price":330000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"}],"Rước đòng":[{"from":1,"price":420000,"gift":"5 Pow up"},{"from":2,"price":410000,"gift":"10 Pow up"},{"from":3,"price":390000,"gift":"1 chai rước đòng + 10 Pow up"},{"from":4,"price":380000,"gift":"1 chai rước đòng + 20 Pow up"},{"from":5,"price":370000,"gift":"3 chai rước đòng"},{"from":10,"price":350000,"gift":"4 chai rước đòng"},{"from":15,"price":340000,"gift":"5 chai rước đòng"},{"from":20,"price":330000,"gift":"8 chai rước đòng"},{"from":60,"price":320000,"gift":"16 chai rước đòng"},{"from":100,"price":310000,"gift":"25 chai rước đòng"},{"from":200,"price":300000,"gift":"50 chai rước đòng"}],"Canxi Bo":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":200,"price":330000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"}],"R95":[{"from":1,"price":525000,"gift":"2 Pow up"},{"from":2,"price":487500,"gift":"4 Pow up"},{"from":3,"price":465000,"gift":"1 kg"},{"from":4,"price":442500,"gift":"1 kg + 5 Pow up"},{"from":5,"price":413000,"gift":"2 kg"},{"from":10,"price":382500,"gift":"3 kg"},{"from":15,"price":382667,"gift":"4 kg"},{"from":20,"price":382500,"gift":"6 kg"},{"from":40,"price":382500,"gift":"12 kg"},{"from":80,"price":382500,"gift":"24 kg"},{"from":100,"price":382500,"gift":"30 kg"},{"from":200,"price":350000,"gift":"40 kg"},{"from":400,"price":320000,"gift":"80 kg"}],"Siêu trổ thoát":[{"from":1,"price":420000,"gift":"5 Pow up"},{"from":2,"price":410000,"gift":"10 Pow up"},{"from":3,"price":390000,"gift":"1 chai + 10 Pow up"},{"from":4,"price":380000,"gift":"1 chai + 20 Pow up"},{"from":5,"price":370000,"gift":"3 chai siêu trổ thoát"},{"from":10,"price":350000,"gift":"4 chai siêu trổ thoát"},{"from":15,"price":340000,"gift":"5 chai siêu trổ thoát"},{"from":20,"price":330000,"gift":"8 chai siêu trổ thoát"},{"from":60,"price":320000,"gift":"16 chai siêu trổ thoát"},{"from":100,"price":310000,"gift":"25 chai siêu trổ thoát"},{"from":200,"price":300000,"gift":"50 chai siêu trổ thoát"}],"Sika 39":[{"from":1,"price":520000,"gift":"2 Pow up"},{"from":2,"price":483000,"gift":"4 Pow up"},{"from":3,"price":461000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":439000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":409000,"gift":"2 chai"},{"from":10,"price":379000,"gift":"3 chai"},{"from":15,"price":379000,"gift":"4 chai"},{"from":20,"price":379000,"gift":"6 chai"},{"from":40,"price":379000,"gift":"12 chai"},{"from":80,"price":379000,"gift":"24 chai"},{"from":100,"price":379000,"gift":"30 chai"},{"from":200,"price":340000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"},{"from":1000,"price":290000,"gift":"160 chai"}],"S.1":[{"from":1,"price":520000,"gift":"5 Powup"},{"from":2,"price":495000,"gift":"2 X10 + 10 Pow up"},{"from":3,"price":495000,"gift":"3 X10 + 15 Pow up"},{"from":4,"price":495000,"gift":"4 X10 + 20 Pow up"},{"from":5,"price":495000,"gift":"1 PAS.2 + 1 X10"},{"from":6,"price":480000,"gift":"1 PAS.2 + 1 X10 + 5 Pow up"},{"from":7,"price":480000,"gift":"1 PAS.2 + 1 X10 + 10 Pow up"},{"from":8,"price":480000,"gift":"1 PAS.2 + 1 X10 + 20 Pow up"},{"from":9,"price":480000,"gift":"2 PAS.2 + 5 Pow up"},{"from":10,"price":470000,"gift":"3 PAS.2 + 10 Pow up"},{"from":20,"price":450000,"gift":"6 PAS.2 + 1 X10"},{"from":30,"price":450000,"gift":"7 PAS.2 + 1 X10 + 5 Pow up"},{"from":60,"price":450000,"gift":"14 PAS.2 + 2 X10 + 10 Pow up"},{"from":100,"price":400000,"gift":"30 PAS.2 + 2 X10 + 20 Pow up"}],"Pas.2":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"}],"Nấm Azol":[{"from":1,"price":550000,"gift":"2 Pow up"},{"from":2,"price":510000,"gift":"4 Pow up"},{"from":3,"price":487000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":463000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":432000,"gift":"2 chai"},{"from":10,"price":400000,"gift":"3 chai"},{"from":15,"price":400000,"gift":"4 chai"},{"from":20,"price":400000,"gift":"6 chai"},{"from":40,"price":400000,"gift":"12 chai"},{"from":80,"price":400000,"gift":"24 chai"},{"from":100,"price":400000,"gift":"30 chai"},{"from":200,"price":370000,"gift":"40 chai"},{"from":400,"price":330000,"gift":"80 chai"}],"No.1":[{"from":1,"price":645000,"gift":"1 X10"},{"from":2,"price":645000,"gift":"3 X10"},{"from":3,"price":635000,"gift":"4 X10"},{"from":4,"price":625000,"gift":"6 X10"},{"from":5,"price":625000,"gift":"1 Chai No.1 + 1 chai F90"},{"from":6,"price":620000,"gift":"10 X10"},{"from":7,"price":620000,"gift":"12 X10"},{"from":8,"price":620000,"gift":"14 X10"},{"from":10,"price":610000,"gift":"2 Chai No.1 + 2 chai F90"},{"from":15,"price":600000,"gift":"3 Chai No.1 + 3 chai F90"},{"from":30,"price":590000,"gift":"6 Chai No.1 + 6 chai F90"},{"from":60,"price":580000,"gift":"12 Chai No.1 + 9 chai F90"},{"from":120,"price":580000,"gift":"24 Chai No.1 + 18 chai F90"}]};
+const DATA = {"Rước đòng":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai RĐ"},{"from":4,"price":380000,"gift":"1 chai RĐ"},{"from":5,"price":370000,"gift":"2 chai RĐ"},{"from":10,"price":350000,"gift":"3 chai RĐ"},{"from":15,"price":340000,"gift":"4 chai RĐ"},{"from":20,"price":330000,"gift":"6 chai RĐ"},{"from":60,"price":320000,"gift":"12 chai RĐ"},{"from":100,"price":310000,"gift":"20 chai RĐ"},{"from":200,"price":300000,"gift":"40 chai RĐ"}],"R95":[{"from":1,"price":525000,"gift":""},{"from":2,"price":487500,"gift":""},{"from":3,"price":465000,"gift":"5 Pow up"},{"from":4,"price":442500,"gift":""},{"from":5,"price":413000,"gift":"1 kg"},{"from":10,"price":382500,"gift":"2 Kg"},{"from":15,"price":382667,"gift":"3 Kg"},{"from":20,"price":382500,"gift":"4 Kg"},{"from":40,"price":382500,"gift":"8 Kg"},{"from":80,"price":382500,"gift":"16 Kg"},{"from":100,"price":382500,"gift":"20 Kg"},{"from":200,"price":350000,"gift":"30 Kg"},{"from":400,"price":320000,"gift":"50 Kg"}],"Sika 39":[{"from":1,"price":520000,"gift":""},{"from":2,"price":483000,"gift":""},{"from":3,"price":460000,"gift":"1 chai"},{"from":4,"price":439000,"gift":""},{"from":5,"price":409000,"gift":"1 chai + 5 pow up"},{"from":10,"price":379000,"gift":"2 chai"},{"from":15,"price":379000,"gift":"3 chai"},{"from":20,"price":379000,"gift":"4 chai"},{"from":40,"price":379000,"gift":"8 chai"},{"from":80,"price":379000,"gift":"16 chai"},{"from":100,"price":379000,"gift":"20 chai"}],"S.1":[{"from":1,"price":520000,"gift":""},{"from":2,"price":495000,"gift":"2 X10"},{"from":3,"price":495000,"gift":"3 X10"},{"from":4,"price":495000,"gift":"4 X10"},{"from":5,"price":495000,"gift":"5 X10"},{"from":6,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":7,"price":480000,"gift":"6 X10 + 2 Powup"},{"from":8,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":9,"price":480000,"gift":"8 X10 + 4 Powup"},{"from":10,"price":470000,"gift":"10 X10 + 5 Powup"},{"from":20,"price":450000,"gift":"20 X10 + 20 Powup"},{"from":30,"price":450000,"gift":"30 X10 + 30 Powup"},{"from":60,"price":450000,"gift":"60 X10 + 40 Powup"},{"from":100,"price":400000,"gift":"100 X10 + 60 Powup"}],"Siêu trổ thoát":[{"from":1,"price":420000,"gift":""},{"from":2,"price":410000,"gift":""},{"from":3,"price":390000,"gift":"1 chai siêu trổ thoát"},{"from":4,"price":380000,"gift":"1 chai siêu trổ thoát"},{"from":5,"price":370000,"gift":"2 chai siêu trổ thoát"},{"from":10,"price":350000,"gift":"3 chai siêu trổ thoát"},{"from":15,"price":340000,"gift":"4 chai siêu trổ thoát"},{"from":20,"price":330000,"gift":"6 chai siêu trổ thoát"},{"from":60,"price":320000,"gift":"12 chai siêu trổ thoát"},{"from":100,"price":310000,"gift":"20 chai siêu trổ thoát"},{"from":200,"price":300000,"gift":"40 chai siêu trổ thoát"}],"Canxi Bo":[{"from":1,"price":490000,"gift":""},{"from":2,"price":455000,"gift":""},{"from":3,"price":434000,"gift":"1 chai"},{"from":4,"price":413000,"gift":""},{"from":5,"price":385000,"gift":"1 chai + 5 pow up"},{"from":10,"price":357000,"gift":"2 chai"},{"from":15,"price":357000,"gift":"3 chai"},{"from":20,"price":357000,"gift":"4 chai"},{"from":40,"price":357000,"gift":"8 chai"},{"from":80,"price":357000,"gift":"16 chai"},{"from":100,"price":357000,"gift":"20 chai"}],"Pas.2":[{"from":1,"price":490000,"gift":"2 pow up"},{"from":2,"price":455000,"gift":"4 pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"}],"Nấm Azol":[{"from":1,"price":550000,"gift":""},{"from":2,"price":510000,"gift":""},{"from":3,"price":487000,"gift":"1 chai"},{"from":4,"price":463000,"gift":""},{"from":5,"price":432000,"gift":"1 chai + 5 Pow Up"},{"from":10,"price":400000,"gift":"2 chai"},{"from":15,"price":400000,"gift":"3 chai"},{"from":20,"price":400000,"gift":"4 chai"},{"from":40,"price":400000,"gift":"8 chai"},{"from":80,"price":400000,"gift":"16 chai"},{"from":100,"price":400000,"gift":"20 chai"}],"Combi":[{"from":1,"price":35000,"gift":""},{"from":5,"price":28000,"gift":""},{"from":10,"price":25000,"gift":""},{"from":20,"price":23000,"gift":""},{"from":50,"price":20000,"gift":""},{"from":200,"price":18000,"gift":""},{"from":400,"price":16000,"gift":""},{"from":800,"price":15000,"gift":""}],"Pow Up":[{"from":1,"price":20000,"gift":""},{"from":5,"price":18000,"gift":""},{"from":10,"price":17000,"gift":""},{"from":20,"price":16000,"gift":""},{"from":50,"price":15000,"gift":""},{"from":100,"price":14000,"gift":""},{"from":150,"price":13000,"gift":""},{"from":200,"price":12000,"gift":""},{"from":250,"price":11000,"gift":""},{"from":300,"price":10000,"gift":""}],"No.1":[{"from":1,"price":645000,"gift":""},{"from":2,"price":645000,"gift":"1 X10"},{"from":3,"price":635000,"gift":"2 X10"},{"from":4,"price":625000,"gift":"3 X10"},{"from":5,"price":625000,"gift":"1 chai No.1"},{"from":6,"price":620000,"gift":"6 X10"},{"from":7,"price":620000,"gift":"7 X10"},{"from":8,"price":620000,"gift":"8 X10"},{"from":10,"price":610000,"gift":"2 chai No.1"},{"from":15,"price":600000,"gift":"3 chai No.1"},{"from":30,"price":590000,"gift":"6 chai No.1"},{"from":60,"price":580000,"gift":"12 chai No.1"},{"from":120,"price":580000,"gift":"24 chai No.1"}],"Siêu nở bụi":[{"from":1,"price":550000,"gift":""},{"from":2,"price":535000,"gift":""},{"from":3,"price":510000,"gift":""},{"from":4,"price":500000,"gift":""},{"from":5,"price":490000,"gift":""},{"from":10,"price":470000,"gift":""},{"from":20,"price":450000,"gift":""},{"from":40,"price":430000,"gift":""},{"from":60,"price":415000,"gift":""},{"from":80,"price":400000,"gift":""},{"from":100,"price":390000,"gift":""}]};
+const CSKH = {"Rice up 98":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":200,"price":330000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"}],"Rước đòng":[{"from":1,"price":420000,"gift":"5 Pow up"},{"from":2,"price":410000,"gift":"10 Pow up"},{"from":3,"price":390000,"gift":"1 chai rước đòng + 10 Pow up"},{"from":4,"price":380000,"gift":"1 chai rước đòng + 20 Pow up"},{"from":5,"price":370000,"gift":"3 chai rước đòng"},{"from":10,"price":350000,"gift":"4 chai rước đòng"},{"from":15,"price":340000,"gift":"5 chai rước đòng"},{"from":20,"price":330000,"gift":"8 chai rước đòng"},{"from":60,"price":320000,"gift":"16 chai rước đòng"},{"from":100,"price":310000,"gift":"25 chai rước đòng"},{"from":200,"price":300000,"gift":"50 chai rước đòng"}],"Canxi Bo":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"},{"from":200,"price":330000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"}],"R95":[{"from":1,"price":525000,"gift":"2 Pow up"},{"from":2,"price":487500,"gift":"4 Pow up"},{"from":3,"price":465000,"gift":"1 kg"},{"from":4,"price":442500,"gift":"1 kg + 5 Pow up"},{"from":5,"price":413000,"gift":"2 kg"},{"from":10,"price":382500,"gift":"3 kg"},{"from":15,"price":382667,"gift":"4 kg"},{"from":20,"price":382500,"gift":"6 kg"},{"from":40,"price":382500,"gift":"12 kg"},{"from":80,"price":382500,"gift":"24 kg"},{"from":100,"price":382500,"gift":"30 kg"},{"from":200,"price":350000,"gift":"40 kg"},{"from":400,"price":320000,"gift":"80 kg"}],"Siêu trổ thoát":[{"from":1,"price":420000,"gift":"5 Pow up"},{"from":2,"price":410000,"gift":"10 Pow up"},{"from":3,"price":390000,"gift":"1 chai + 10 Pow up"},{"from":4,"price":380000,"gift":"1 chai + 20 Pow up"},{"from":5,"price":370000,"gift":"3 chai siêu trổ thoát"},{"from":10,"price":350000,"gift":"4 chai siêu trổ thoát"},{"from":15,"price":340000,"gift":"5 chai siêu trổ thoát"},{"from":20,"price":330000,"gift":"8 chai siêu trổ thoát"},{"from":60,"price":320000,"gift":"16 chai siêu trổ thoát"},{"from":100,"price":310000,"gift":"25 chai siêu trổ thoát"},{"from":200,"price":300000,"gift":"50 chai siêu trổ thoát"}],"Sika 39":[{"from":1,"price":520000,"gift":"2 Pow up"},{"from":2,"price":483000,"gift":"4 Pow up"},{"from":3,"price":461000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":439000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":409000,"gift":"2 chai"},{"from":10,"price":379000,"gift":"3 chai"},{"from":15,"price":379000,"gift":"4 chai"},{"from":20,"price":379000,"gift":"6 chai"},{"from":40,"price":379000,"gift":"12 chai"},{"from":80,"price":379000,"gift":"24 chai"},{"from":100,"price":379000,"gift":"30 chai"},{"from":200,"price":340000,"gift":"40 chai"},{"from":400,"price":300000,"gift":"80 chai"},{"from":1000,"price":290000,"gift":"160 chai"}],"S.1":[{"from":1,"price":520000,"gift":"5 Powup"},{"from":2,"price":495000,"gift":"2 X10 + 10 Pow up"},{"from":3,"price":495000,"gift":"3 X10 + 15 Pow up"},{"from":4,"price":495000,"gift":"4 X10 + 20 Pow up"},{"from":5,"price":495000,"gift":"1 PAS.2 + 1 X10"},{"from":6,"price":480000,"gift":"1 PAS.2 + 1 X10 + 5 Pow up"},{"from":7,"price":480000,"gift":"1 PAS.2 + 1 X10 + 10 Pow up"},{"from":8,"price":480000,"gift":"1 PAS.2 + 1 X10 + 20 Pow up"},{"from":9,"price":480000,"gift":"2 PAS.2 + 5 Pow up"},{"from":10,"price":470000,"gift":"3 PAS.2 + 10 Pow up"},{"from":20,"price":450000,"gift":"6 PAS.2 + 1 X10"},{"from":30,"price":450000,"gift":"7 PAS.2 + 1 X10 + 5 Pow up"},{"from":60,"price":450000,"gift":"14 PAS.2 + 2 X10 + 10 Pow up"},{"from":100,"price":400000,"gift":"30 PAS.2 + 2 X10 + 20 Pow up"}],"Pas.2":[{"from":1,"price":490000,"gift":"2 Pow up"},{"from":2,"price":455000,"gift":"4 Pow up"},{"from":3,"price":434000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":413000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":385000,"gift":"2 chai"},{"from":10,"price":357000,"gift":"3 chai"},{"from":15,"price":357000,"gift":"4 chai"},{"from":20,"price":357000,"gift":"6 chai"},{"from":40,"price":357000,"gift":"12 chai"},{"from":80,"price":357000,"gift":"24 chai"},{"from":100,"price":357000,"gift":"30 chai"}],"Nấm Azol":[{"from":1,"price":550000,"gift":"2 Pow up"},{"from":2,"price":510000,"gift":"4 Pow up"},{"from":3,"price":487000,"gift":"1 chai + 3 Pow up"},{"from":4,"price":463000,"gift":"1 chai + 4 Pow up"},{"from":5,"price":432000,"gift":"2 chai"},{"from":10,"price":400000,"gift":"3 chai"},{"from":15,"price":400000,"gift":"4 chai"},{"from":20,"price":400000,"gift":"6 chai"},{"from":40,"price":400000,"gift":"12 chai"},{"from":80,"price":400000,"gift":"24 chai"},{"from":100,"price":400000,"gift":"30 chai"},{"from":200,"price":370000,"gift":"40 chai"},{"from":400,"price":330000,"gift":"80 chai"}],"Combi":[{"from":1,"price":35000,"gift":""},{"from":5,"price":28000,"gift":""},{"from":10,"price":25000,"gift":""},{"from":20,"price":23000,"gift":""},{"from":50,"price":20000,"gift":""},{"from":200,"price":18000,"gift":""},{"from":400,"price":16000,"gift":""},{"from":800,"price":15000,"gift":""}],"Pow Up":[{"from":1,"price":20000,"gift":""},{"from":5,"price":18000,"gift":""},{"from":10,"price":17000,"gift":""},{"from":20,"price":16000,"gift":""},{"from":50,"price":15000,"gift":""},{"from":100,"price":14000,"gift":""},{"from":150,"price":13000,"gift":""},{"from":200,"price":12000,"gift":""},{"from":250,"price":11000,"gift":""},{"from":300,"price":10000,"gift":""}],"No.1":[{"from":1,"price":645000,"gift":"1 X10"},{"from":2,"price":645000,"gift":"3 X10"},{"from":3,"price":635000,"gift":"4 X10"},{"from":4,"price":625000,"gift":"6 X10"},{"from":5,"price":625000,"gift":"1 Chai No.1 + 1 chai F90"},{"from":6,"price":620000,"gift":"10 X10"},{"from":7,"price":620000,"gift":"12 X10"},{"from":8,"price":620000,"gift":"14 X10"},{"from":10,"price":610000,"gift":"2 Chai No.1 + 2 chai F90"},{"from":15,"price":600000,"gift":"3 Chai No.1 + 3 chai F90"},{"from":30,"price":590000,"gift":"6 Chai No.1 + 6 chai F90"},{"from":60,"price":580000,"gift":"12 Chai No.1 + 9 chai F90"},{"from":120,"price":580000,"gift":"24 Chai No.1 + 18 chai F90"}],"Siêu nở bụi":[{"from":1,"price":550000,"gift":"2 Pow up 12g"},{"from":2,"price":535000,"gift":"4 Pow up 12g"},{"from":3,"price":510000,"gift":"6 Pow up 12g"},{"from":4,"price":500000,"gift":"Tặng 1 Chai + 4 Pow up"},{"from":5,"price":490000,"gift":"Tặng 1 Chai + 5 Pow up"},{"from":10,"price":470000,"gift":"1 chai + 10 Pow up"},{"from":20,"price":450000,"gift":"2 chai + 10 Pow up"},{"from":40,"price":430000,"gift":"4 chai + 20 Pow up"},{"from":60,"price":415000,"gift":"6 chai + 30 Pow up"},{"from":80,"price":400000,"gift":"8 chai + 40 Pow up"},{"from":100,"price":390000,"gift":"10 chai + 50 Pow up"}]};
 const GROUP = ["Rước đòng","Siêu trổ thoát","Sika 39","Canxi Bo"];
-
-const productEl = document.getElementById("product");
-const qtyEl = document.getElementById("qty");
-let order = [];
-
-Object.keys(DATA).forEach(name => {
-  const o = document.createElement("option");
-  o.value = name;
-  o.textContent = name;
-  productEl.appendChild(o);
-});
-
-const money = n => new Intl.NumberFormat("vi-VN").format(Math.round(n || 0)) + " ₫";
-
-function tier(table, name, q) {
-  const rows = table[name] || [];
-  const valid = rows.filter(x => Number(x.from) <= Number(q));
-  return valid.length ? valid.reduce((a,b) => Number(a.from) > Number(b.from) ? a : b) : null;
+const productEl=document.getElementById("product"), qtyEl=document.getElementById("qty");
+let order=[];
+const unitOf=name => (name==="Combi" || name==="Pow Up") ? "gói" : "chai";
+Object.keys(DATA).forEach(name=>{const o=document.createElement("option");o.value=name;o.textContent=name;productEl.appendChild(o);});
+function thresholdValue(v){const m=String(v??"").match(/^\s*(\d+(?:\.\d+)?)/);return m?Number(m[1]):Number(v);}
+function tier(table,name,q){
+ const rows=table[name]||[], valid=rows.filter(x=>thresholdValue(x.from)<=Number(q));
+ return valid.length?valid.reduce((a,b)=>thresholdValue(a.from)>thresholdValue(b.from)?a:b):null;
 }
-
-function aggregate() {
-  const q = new Map(), names = [];
-  for (const x of order) {
-    if (!q.has(x.name)) {
-      q.set(x.name, 0);
-      names.push(x.name);
-    }
-    q.set(x.name, q.get(x.name) + x.qty);
-  }
-  return {q, names, totalQty: order.reduce((s,x) => s + x.qty, 0)};
+const money=n=>new Intl.NumberFormat("vi-VN").format(Math.round(n||0))+" ₫";
+function aggregate(){
+ const q=new Map(),names=[];
+ for(const x of order){if(!q.has(x.name)){q.set(x.name,0);names.push(x.name);}q.set(x.name,q.get(x.name)+x.qty);}
+ return {q,names,totalQty:order.reduce((s,x)=>s+x.qty,0)};
 }
-
-function giftText(gift, product) {
-  const q = String(gift || "").trim();
-  if (!q) return "";
-  if (/chai/i.test(q)) {
-    const m = q.match(/^([^+]*chai)/i);
-    return "Tặng " + (m ? m[1].trim() + " " + product : q + " " + product);
-  }
-  return "Tặng " + q + " " + product;
+function giftText(gift,product){
+ let q=String(gift||"").trim(); if(!q)return "";
+ q=q.replace(/^tặng\s*/i,"").trim();
+ if(/chai/i.test(q)){
+   const parts=q.split("+").map(x=>x.trim());
+   const first=parts[0];
+   if(/^\d+\s*chai$/i.test(first)) parts[0]=first+" "+product;
+   return "Tặng "+parts.join(" + ");
+ }
+ return "Tặng "+q+" "+product;
 }
-
-function calculateGifts(table, names, q) {
-  const gifts = [];
-  const leftovers = new Map();
-
-  for (const name of names) {
-    const n = q.get(name);
-    const gt = tier(table, name, n);
-    if (gt && gt.gift) gifts.push(giftText(gt.gift, name));
-
-    const threshold = gt ? Number(gt.from) : 0;
-    leftovers.set(name, n < 3 ? n : n - threshold);
-  }
-
-  const remain = GROUP.reduce((sum, name) => sum + (leftovers.get(name) || 0), 0);
-  const candidates = names.filter(name => GROUP.includes(name) && (leftovers.get(name) || 0) > 0);
-  const groupGiftCount = Math.floor(remain / 3);
-
-  if (groupGiftCount > 0 && candidates.length) {
-    let recipient = candidates[0];
-    let best = tier(table, recipient, 1)?.price ?? Infinity;
-
-    for (const name of candidates.slice(1)) {
-      const price = tier(table, name, 1)?.price ?? Infinity;
-      if (price < best) {
-        best = price;
-        recipient = name;
-      }
-    }
-    gifts.push("Tặng " + groupGiftCount + " chai " + recipient);
-  }
-
-  return gifts.filter(Boolean);
+function calculateGifts(table,names,q){
+ const gifts=[],leftovers=new Map();
+ for(const name of names){
+  const n=q.get(name),gt=tier(table,name,n);
+  if(gt&&gt.gift)gifts.push(giftText(gt.gift,name));
+  const threshold=gt?thresholdValue(gt.from):0;
+  leftovers.set(name,n<3?n:n-threshold);
+ }
+ const remain=GROUP.reduce((sum,name)=>sum+(leftovers.get(name)||0),0);
+ const candidates=names.filter(name=>GROUP.includes(name)&&(leftovers.get(name)||0)>0);
+ const count=Math.floor(remain/3);
+ if(count>0&&candidates.length){
+  let recipient=candidates[0],best=tier(table,recipient,1)?.price??Infinity;
+  for(const name of candidates.slice(1)){const price=tier(table,name,1)?.price??Infinity;if(price<best){best=price;recipient=name;}}
+  gifts.push("Tặng "+count+" chai "+recipient);
+ }
+ return gifts;
 }
-
-function calculate() {
-  const {q, names, totalQty} = aggregate();
-  let total = 0;
-  let originalTotal = 0;
-  const rows = [];
-
-  for (const name of names) {
-    const n = q.get(name);
-    const currentTier = tier(DATA, name, totalQty);
-    const originalTier = tier(DATA, name, n);
-    const price = currentTier ? currentTier.price : 0;
-    const originalPrice = originalTier ? originalTier.price : price;
-
-    total += n * price;
-    originalTotal += n * originalPrice;
-
-    rows.push({name, qty:n, price, originalPrice});
-  }
-
-  return {
-    totalQty,
-    rows,
-    total,
-    originalTotal,
-    saving: Math.max(0, originalTotal - total),
-    gifts: calculateGifts(DATA, names, q),
-    cskhGifts: calculateGifts(CSKH, names, q)
-  };
+function calculate(){
+ const {q,names,totalQty}=aggregate();let total=0,originalTotal=0;const rows=[];
+ for(const name of names){
+  const n=q.get(name),current=tier(DATA,name,totalQty),original=tier(DATA,name,n);
+  const price=current?current.price:0,originalPrice=original?original.price:price;
+  total+=n*price;originalTotal+=n*originalPrice;
+  rows.push({name,qty:n,price,originalPrice});
+ }
+ return {totalQty,rows,total,originalTotal,saving:Math.max(0,originalTotal-total),gifts:calculateGifts(DATA,names,q),cskhGifts:calculateGifts(CSKH,names,q)};
 }
-
-function render() {
-  const r = calculate();
-
-  document.getElementById("total").textContent = money(r.total);
-  document.getElementById("originalTotal").textContent = money(r.originalTotal);
-  document.getElementById("saving").textContent = money(r.saving);
-  document.getElementById("totalQty").innerHTML = r.totalQty + ' <small>chai</small>';
-  document.getElementById("itemCount").textContent = r.rows.length + " sản phẩm";
-
-  const box = document.getElementById("items");
-  box.innerHTML = "";
-  document.getElementById("empty").style.display = order.length ? "none" : "block";
-
-  r.rows.forEach((x, i) => {
-    const d = document.createElement("div");
-    d.className = "table-row";
-    d.innerHTML = `
-      <div class="prod-name"><b>${x.name}</b><small>${x.qty} chai</small></div>
-      <div class="row-qty">${x.qty}</div>
-      <div class="unit">${money(x.price)}</div>
-      <strong>${money(x.qty * x.price)}</strong>
-      <button class="remove" data-i="${i}" aria-label="Xóa">×</button>`;
-    box.appendChild(d);
-  });
-
-  document.getElementById("gifts").innerHTML = r.gifts.length
-    ? r.gifts.map(g => `<div>🎁 ${g.replace(/^Tặng /,"")}</div>`).join("")
-    : "Chưa có quà tặng";
-
-  document.getElementById("cskhGifts").innerHTML = r.cskhGifts.length
-    ? r.cskhGifts.map(g => `<div>🎀 ${g.replace(/^Tặng /,"")}</div>`).join("")
-    : "Chưa có quà tặng CSKH";
-
-  box.querySelectorAll(".remove").forEach(btn => {
-    btn.onclick = () => {
-      const name = r.rows[Number(btn.dataset.i)].name;
-      const index = order.findIndex(x => x.name === name);
-      if (index >= 0) order.splice(index, 1);
-      render();
-    };
-  });
+function render(){
+ const r=calculate();
+ document.getElementById("total").textContent=money(r.total);
+ document.getElementById("originalTotal").textContent=money(r.originalTotal);
+ document.getElementById("saving").textContent=money(r.saving);
+ document.getElementById("totalQty").textContent=r.totalQty+" đơn vị";
+ document.getElementById("itemCount").textContent=r.rows.length+" sản phẩm";
+ const box=document.getElementById("items");box.innerHTML="";
+ document.getElementById("empty").style.display=order.length?"none":"block";
+ r.rows.forEach((x,i)=>{
+  const d=document.createElement("div");d.className="table-row";
+  d.innerHTML=`<div class="prod-name"><b>${x.name}</b><small>${x.qty} ${unitOf(x.name)}</small></div><div class="row-qty">${x.qty}</div><div class="unit">${money(x.price)}</div><strong>${money(x.qty*x.price)}</strong><button class="remove" data-i="${i}" aria-label="Xóa">×</button>`;
+  box.appendChild(d);
+ });
+ document.getElementById("gifts").innerHTML=r.gifts.length?r.gifts.map(g=>`<div>🎁 ${g}</div>`).join(""):"Chưa có quà tặng";
+ document.getElementById("cskhGifts").innerHTML=r.cskhGifts.length?r.cskhGifts.map(g=>`<div>🎀 ${g}</div>`).join(""):"Chưa có quà tặng CSKH";
+ box.querySelectorAll(".remove").forEach(btn=>btn.onclick=()=>{const name=r.rows[Number(btn.dataset.i)].name;const index=order.findIndex(x=>x.name===name);if(index>=0)order.splice(index,1);render();});
 }
-
-document.getElementById("minus").onclick = () =>
-  qtyEl.value = Math.max(1, (Number(qtyEl.value) || 1) - 1);
-
-document.getElementById("plus").onclick = () =>
-  qtyEl.value = Math.max(1, (Number(qtyEl.value) || 1) + 1);
-
-document.getElementById("add").onclick = () => {
-  const name = productEl.value;
-  const qty = Math.max(1, Math.floor(Number(qtyEl.value) || 1));
-  order.push({name, qty});
-  qtyEl.value = 1;
-  render();
+document.getElementById("minus").onclick=()=>qtyEl.value=Math.max(1,(Number(qtyEl.value)||1)-1);
+document.getElementById("plus").onclick=()=>qtyEl.value=Math.max(1,(Number(qtyEl.value)||1)+1);
+document.getElementById("add").onclick=()=>{const name=productEl.value,qty=Math.max(1,Math.floor(Number(qtyEl.value)||1));order.push({name,qty});qtyEl.value=1;render();};
+document.getElementById("clear").onclick=()=>{order=[];render();};
+document.getElementById("refresh").onclick=()=>{order=[];qtyEl.value=1;document.getElementById("cskhPanel").hidden=true;document.getElementById("cskhArrow").textContent="⌄";render();};
+document.getElementById("cskhToggle").onclick=()=>{const p=document.getElementById("cskhPanel");p.hidden=!p.hidden;document.getElementById("cskhArrow").textContent=p.hidden?"⌄":"⌃";};
+document.getElementById("copy").onclick=async()=>{
+ if(!order.length)return alert("Bạn chưa thêm sản phẩm.");
+ const r=calculate(),txt="BÁO GIÁ — TÍNH TIỀN TIẾN TÌNH\n\n"+r.rows.map(x=>`- ${x.name}: ${x.qty} ${unitOf(x.name)} × ${money(x.price)} = ${money(x.qty*x.price)}`).join("\n")+`\n\nGIÁ GỐC: ${money(r.originalTotal)}\nTIẾT KIỆM: ${money(r.saving)}\nTỔNG TIỀN: ${money(r.total)}\nQUÀ TẶNG: ${r.gifts.join(" + ")||"Không có"}\nQUÀ TẶNG CSKH: ${r.cskhGifts.join(" + ")||"Không có"}`;
+ try{await navigator.clipboard.writeText(txt);alert("Đã sao chép báo giá 💕");}catch{window.prompt("Sao chép báo giá:",txt);}
 };
-
-document.getElementById("clear").onclick = () => {
-  order = [];
-  render();
-};
-
-document.getElementById("refresh").onclick = () => {
-  order = [];
-  qtyEl.value = 1;
-  document.getElementById("cskhPanel").hidden = true;
-  document.getElementById("cskhArrow").textContent = "⌄";
-  render();
-};
-
-document.getElementById("cskhToggle").onclick = () => {
-  const panel = document.getElementById("cskhPanel");
-  panel.hidden = !panel.hidden;
-  document.getElementById("cskhArrow").textContent = panel.hidden ? "⌄" : "⌃";
-};
-
-document.getElementById("copy").onclick = async () => {
-  if (!order.length) return alert("Bạn chưa thêm sản phẩm.");
-  const r = calculate();
-  const text =
-    "BÁO GIÁ — TÍNH TIỀN TIẾN TÌNH\n\n" +
-    r.rows.map(x => `- ${x.name}: ${x.qty} chai × ${money(x.price)} = ${money(x.qty*x.price)}`).join("\n") +
-    `\n\nGIÁ GỐC: ${money(r.originalTotal)}` +
-    `\nTIẾT KIỆM: ${money(r.saving)}` +
-    `\nTỔNG TIỀN: ${money(r.total)}` +
-    `\nQUÀ TẶNG: ${r.gifts.join(" + ") || "Không có"}` +
-    `\nQUÀ TẶNG CSKH: ${r.cskhGifts.join(" + ") || "Không có"}`;
-  try {
-    await navigator.clipboard.writeText(text);
-    alert("Đã sao chép báo giá 💕");
-  } catch {
-    window.prompt("Sao chép báo giá:", text);
-  }
-};
-
 render();
 </script>
-</body>
-</html>
+</body></html>
